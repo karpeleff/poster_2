@@ -12,4 +12,12 @@ class PostController extends Controller
 
         return 'success';
     }
+
+
+
+public function test()
+{
+    
+}
+
 }

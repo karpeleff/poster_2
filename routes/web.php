@@ -29,3 +29,5 @@ Route::post('file', [App\Http\Controllers\FileController::class, 'store']);
 
 
 Route::post('send', [App\Http\Controllers\PostController::class, 'send']); 
+
+Route::get('test', [App\Http\Controllers\PostController::class, 'test']); 
