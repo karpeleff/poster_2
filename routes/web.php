@@ -26,3 +26,6 @@ require __DIR__.'/auth.php';
 
 Route::get('file', [App\Http\Controllers\FileController::class, 'create']); 
 Route::post('file', [App\Http\Controllers\FileController::class, 'store']);
+
+
+Route::post('send', [App\Http\Controllers\PostController::class, 'send']); 
