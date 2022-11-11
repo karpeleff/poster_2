@@ -31,3 +31,11 @@ Route::post('file', [App\Http\Controllers\FileController::class, 'store']);
 Route::post('send', [App\Http\Controllers\PostController::class, 'send']); 
 
 Route::get('test', [App\Http\Controllers\PostController::class, 'test']); 
+Route::post('post', [App\Http\Controllers\PostController::class, 'post']); 
+
+Route::get('test3', [App\Http\Controllers\PostController::class, 'test3']); 
+Route::get('add_advt', [App\Http\Controllers\PostController::class, 'add_advt'])->name('add_advt'); 
+Route::post('add_advt', [App\Http\Controllers\PostController::class, 'advt_store'])->name('advt_store'); 
+
+Route::get('akk_manager', [App\Http\Controllers\PostController::class, 'akk_manager'])->name('akk_manager'); 
+Route::post('akk_store', [App\Http\Controllers\PostController::class, 'akk_store'])->name('akk_store'); 
