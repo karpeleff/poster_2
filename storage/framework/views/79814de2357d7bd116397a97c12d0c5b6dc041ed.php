@@ -1,32 +1,32 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="<?php echo e(str_replace('_', '-', app()->getLocale())); ?>">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+        <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
 
-        <title>{{ config('app.name', 'Poster') }}</title>
+        <title><?php echo e(config('app.name', 'Poster')); ?></title>
 
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
         <!-- Styles -->
-        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-        <link rel="stylesheet" href="{{ asset('assets/css/tailwind.output.css') }}" />
+        <link rel="stylesheet" href="<?php echo e(asset('css/app.css')); ?>">
+        <link rel="stylesheet" href="<?php echo e(asset('assets/css/tailwind.output.css')); ?>" />
         <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
 
         <!-- Scripts -->
-        <script src="{{ asset('js/app.js') }}" defer></script>
+        <script src="<?php echo e(asset('js/app.js')); ?>" defer></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"defer></script>
         <script
       src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"
       defer
     ></script>
-    <script src="{{ asset('assets/js/init-alpine.js') }}"></script>
+    <script src="<?php echo e(asset('assets/js/init-alpine.js')); ?>"></script>
     </head>
     <body>
     <div
@@ -52,7 +52,7 @@
               ></span>
               <a
                 class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
-                href="{{route('add_advt')}}"
+                href="<?php echo e(route('add_advt')); ?>"
               >
                 <svg
                   class="w-5 h-5"
@@ -76,7 +76,7 @@
             <li class="relative px-6 py-3">
               <a
                 class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                href="{{route('akk_manager')}}"
+                href="<?php echo e(route('akk_manager')); ?>"
               >
                 <svg
                   class="w-5 h-5"
@@ -107,7 +107,7 @@
           </div> -->
           <div class="px-6 my-6">
           
-            <a class="dropdown-item" href="{{ route('logout') }}"
+            <a class="dropdown-item" href="<?php echo e(route('logout')); ?>"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                           logout
@@ -115,9 +115,9 @@
           
              
            
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+            <form id="logout-form" action="<?php echo e(route('logout')); ?>" method="POST" class="d-none">
             
-                                        @csrf
+                                        <?php echo csrf_field(); ?>
                                     </form>
           </div>
         </div>
@@ -240,10 +240,11 @@
         <main class="h-full overflow-y-auto">
           <div class="container px-6 mx-auto grid">
            
-            @yield('content')
+            <?php echo $__env->yieldContent('content'); ?>
           </div>
         </main>
       </div>
     </div>
   </body>
 </html>
+<?php /**PATH /home/aleksey/PhpstormProjects/poster_2/resources/views/layouts/app.blade.php ENDPATH**/ ?>

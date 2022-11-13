@@ -2,12 +2,18 @@
 
 namespace App\Http\Controllers;
 
+
+use App\Models\Advert;
+use App\Models\Account;
+
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Http;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7;
+use Illuminate\Support\Facades\File;
+use Intervention\Image\Facades\Image;
 
 use Ixudra\Curl\Facades\Curl;
 use Illuminate\Support\Facades\Storage;
@@ -27,19 +33,93 @@ public function  add_advt()
     return view('add_advt');
 }
 
-public  function  advt_store()
+public  function  ffadvt_store(Request $request)
 {
-    
+  // dd($request); 
+
+  /// $request->validate(['image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',]);
+
+ 
+$mage = $request->image();
+
+//$path = $request->file('image')->store('images');
+
+//$image = $request->file('image');
+//$path = $request->file('image')->store('images');
+
+     $image->move(storage_path('images'), time() . '_' . $image->getClientOriginalName());
+
+    // $name = $file->getClientOriginalName();
+
+
+    foreach ($request->file() as $file) {
+        foreach ($file as $f) {
+            $f->move(storage_path('/'), time().'_'.$f->getClientOriginalName());
+        }
+    }
+
+
+
+  
+
+ $record = new Advert;
+ 
+   $record->autor = $request->autor;
+   $record-> tel= $request->tel;
+   $record->email = $request->email;
+   $record->sity = $request->sity;
+   $record-> cat= $request->cat;
+   $record->header = $request->header;
+   $record->text = $request->text;
+   $record->image = '1'; //$image->getClientOriginalName();
+   $record->status = 'string';
+   $record->save();
+   return redirect()->route('add_advt');
 }
+
+public function advt_store(Request $request)
+{
+ /*    $request->validate([
+        'name' => 'required',
+        'detail' => 'required',
+        'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+    ]);
+ */
+    $input = $request->all();
+
+    if ($image = $request->file('image')) {
+        $destinationPath = storage_path('images/');//'image/';
+        $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+        $image->move($destinationPath, $profileImage);
+        $input['image'] = "$profileImage";
+    }
+
+    Advert::create($input);
+ 
+    return redirect()->route('add_advt')
+                    ->with('success','Product created successfully.');
+}
+
+
+
+
+
 
 public function  akk_manager()
 {
     return view('akk_manager');
 }
 
-public  function  akk_store()
+public  function  akk_store(Request $request)
 {
-    
+    $record = new Account;
+ 
+   $record->login = $request->login;
+   $record-> pass= $request->pass;
+   $record->proxy = $request->proxy;
+   $record-> place= $request->place;
+   $record->save(); 
+   return redirect()->route('akk_manager');
 }
 
 

@@ -15,6 +15,15 @@ class CreateAdvertsTable extends Migration
     {
         Schema::create('adverts', function (Blueprint $table) {
             $table->id();
+            $table->string('autor');
+            $table->string('tel');
+            $table->string('sity');
+            $table->string('email');
+            $table->string('cat');
+            $table->string('header');
+            $table->string('text');
+            $table->string('image');
+            $table->json('status');
             $table->timestamps();
         });
     }

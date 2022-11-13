@@ -1,14 +1,12 @@
-@extends('layouts.app')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 
 
-@if ($message = Session::get('success'))
+<?php if($message = Session::get('success')): ?>
 <div class="alert alert-success">
-    <p>{{ $message }}</p>
+    <p><?php echo e($message); ?></p>
 </div>
 
-@endif
+<?php endif; ?>
 
 <h2
               class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
@@ -16,7 +14,7 @@
               Новое обьявление
             </h2>
             <!-- CTA -->
-        <form  method="POST" enctype="multipart/form-data" method='{{route('advt_store')}}'  >
+        <form  method="POST" enctype="multipart/form-data" method='<?php echo e(route('advt_store')); ?>'  >
 <label class="block text-sm">
                 <span class="text-gray-700 dark:text-gray-400">Автор</span>
                 <input
@@ -105,6 +103,7 @@
                   Send
                 </button>
               </div>
-              @csrf
+              <?php echo csrf_field(); ?>
               </form>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /home/aleksey/PhpstormProjects/poster_2/resources/views/add_advt.blade.php ENDPATH**/ ?>
