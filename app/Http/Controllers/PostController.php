@@ -92,6 +92,7 @@ public function advt_store(Request $request)
         $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
         $image->move($destinationPath, $profileImage);
         $input['image'] = "$profileImage";
+        $input['status'] = "unpublished";
     }
 
     Advert::create($input);
