@@ -23,7 +23,7 @@ class CreateAdvertsTable extends Migration
             $table->string('header');
             $table->string('text');
             $table->string('image');
-            $table->json('status');
+            $table->longText('status');
             $table->timestamps();
         });
     }
