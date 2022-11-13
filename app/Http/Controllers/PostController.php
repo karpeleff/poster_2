@@ -97,7 +97,7 @@ public function advt_store(Request $request)
     Advert::create($input);
  
     return redirect()->route('add_advt')
-                    ->with('success','Product created successfully.');
+                    ->with('success','Обьявление добавлено в базу');
 }
 
 
