@@ -114,7 +114,10 @@ public function  akk_manager()
 
 public  function advt_list()
 {
-     return view('advt_list');
+    $data = Advert::all();
+
+     return view('advt_list')->with('data', $data);
+   
 }
 
 public  function akk_list()
@@ -122,6 +125,12 @@ public  function akk_list()
      return view('advt_list');
 }
 
+public  function advt_del($id)
+{
+    Advert::destroy($id);
+
+     return $this->advt_list();
+}
 
 
 public  function  akk_store(Request $request)

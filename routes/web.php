@@ -41,3 +41,4 @@ Route::get('akk_manager', [App\Http\Controllers\PostController::class, 'akk_mana
 Route::post('akk_store', [App\Http\Controllers\PostController::class, 'akk_store'])->name('akk_store');
  Route::get('advt_list', [App\Http\Controllers\PostController::class, 'advt_list'])->name('advt_list'); 
  Route::get('akk_list', [App\Http\Controllers\PostController::class, 'akk_list'])->name('akk_list'); 
+ Route::get('advt_del/{id}', [App\Http\Controllers\PostController::class, 'advt_del'])->name('advt_del'); 
