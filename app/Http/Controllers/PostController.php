@@ -293,19 +293,28 @@ $headers = $response->headers; */
 
 //dd($headers);     ->withFile( 'image_1', 'storage/1.jpg', 'image/jpg', '1.jpg' )     'photo1'    => '1.jpg' ,
 
+$row = Advert::latest()->first();
+
+//dd($row->sity);
+
+$path = Storage::path('images/');
+
+//dd($path);
+//lemhirassion=33b5cc1416b8dd2fb4d71fcc11c431b3;
 
 
-$path = Storage::path('1.jpg');
-$path2 = Storage::path('2.jpg');
+
+$path = storage_path('images/');
+
 
 $response = Curl::to('https://www.lemhira.com/itemdetails.php?id=0')
                     ->withData([
                        
-                        'itemname'  => '2 photos',
+                        'itemname'  => $row->header,
                         'sphere'    => '4',
-                        'item_desc' => 'без куки',
-                        'phone-1'   => '7969585848484',
-                        'name-1'    => 'Алексей',
+                        'item_desc' => $row->text,
+                        'phone-1'   => $row->tel,
+                        'name-1'    => $row->autor,
                         'category'  => '34',
                         'passreg'  =>  'i9pEYKDQNsbJ9',
                         'register' => 'avebrave75@gmail.com',
@@ -315,18 +324,22 @@ $response = Curl::to('https://www.lemhira.com/itemdetails.php?id=0')
                     ])
                     ->withResponseHeaders([
                         'Accept: application/x-www-form-urlencoded', 
-                        'Cookie: lemhirassion=9fdb58ed457f0d097f3e51de74f50b46', 
+                        'Cookie: lemhirassion=33b5cc1416b8dd2fb4d71fcc11c431b3', 
                         'Content-Type: multipart/form-data', 
                         'Accept-Encoding: gzip, deflate, br', 
                         'User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:106.0) Gecko/20100101 Firefox/106.0', 
                         'Connection: keep-alive'
                     ]) 
                     ->returnResponseObject()
-                    ->withFile( 'photo1', $path, 'image/jpg', '1.jpg' )
+
+                    ->withResponseHeaders()
+                  ->withFile( 'photo1', $path.'/'.$row->image, 'image/jpg', $row->image )
                    
                         
                     ->post();
-                   // dd($response);
+                  //  dd($response);
+                  
+                //  dd($response->headers);
 
                    //$content = $response->content;
 

@@ -1,34 +1,11 @@
-<!DOCTYPE html>
-<html lang="<?php echo e(str_replace('_', '-', app()->getLocale())); ?>">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
-
-        <title><?php echo e(config('app.name', 'Poster')); ?></title>
-
-        <!-- Fonts -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
-
-        <!-- Styles -->
-        <link rel="stylesheet" href="<?php echo e(asset('css/app.css')); ?>">
-        <link rel="stylesheet" href="<?php echo e(asset('assets/css/tailwind.output.css')); ?>" />
-        <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-
-        <!-- Scripts -->
-        <script src="<?php echo e(asset('js/app.js')); ?>" defer></script>
-      
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"defer></script>
-        <script
-      src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"
-      defer
-    ></script>
-    <script src="<?php echo e(asset('assets/js/init-alpine.js')); ?>"></script>
-    </head>
-    <body>
+<?php if (isset($component)) { $__componentOriginal8e2ce59650f81721f93fef32250174d77c3531da = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\AppLayout::class, []); ?>
+<?php $component->withName('app-layout'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+ 
+<body>
     <div
       class="flex h-screen bg-gray-50 dark:bg-gray-900"
       :class="{ 'overflow-hidden': isSideMenuOpen }"
@@ -40,7 +17,7 @@
         <div class="py-4 text-gray-500 dark:text-gray-400">
           <a
             class="ml-6 text-lg font-bold text-gray-800 dark:text-gray-200"
-            href="/"
+            href="#"
           >
             POSTER
           </a>
@@ -76,7 +53,7 @@
             <li class="relative px-6 py-3">
               <a
                 class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                href="<?php echo e(route('akk_manager')); ?>"
+                href="<?php echo e(route('add_advt')); ?>"
               >
                 <svg
                   class="w-5 h-5"
@@ -92,41 +69,19 @@
                     d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
                   ></path>
                 </svg>
-                <span class="ml-4">Akk manager</span>
-              </a>
-            </li>
-            <li class="relative px-6 py-3">
-              <a
-                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                href="<?php echo e(route('test')); ?>"
-              >
-                <svg
-                  class="w-5 h-5"
-                  aria-hidden="true"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
-                  ></path>
-                </svg>
-                <span class="ml-4">test publication</span>
+                <span class="ml-4">Forms</span>
               </a>
             </li>
          
           </ul>
-        <!--   <div class="px-6 my-6">
+          <div class="px-6 my-6">
             <button
               class="flex items-center justify-between w-full px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
             >
               Create account
               <span class="ml-2" aria-hidden="true">+</span>
             </button>
-          </div> -->
+          </div>
           <div class="px-6 my-6">
           
             <a class="dropdown-item" href="<?php echo e(route('logout')); ?>"
@@ -261,12 +216,23 @@
         </header>
         <main class="h-full overflow-y-auto">
           <div class="container px-6 mx-auto grid">
-           
-            <?php echo $__env->yieldContent('content'); ?>
+            <h2
+              class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
+            >
+              Панель управления
+            </h2>
+            <!-- CTA -->
+      content
           </div>
         </main>
       </div>
     </div>
   </body>
-</html>
-<?php /**PATH /home/aleksey/PhpstormProjects/poster_2/resources/views/layouts/app.blade.php ENDPATH**/ ?>
+
+ <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal8e2ce59650f81721f93fef32250174d77c3531da)): ?>
+<?php $component = $__componentOriginal8e2ce59650f81721f93fef32250174d77c3531da; ?>
+<?php unset($__componentOriginal8e2ce59650f81721f93fef32250174d77c3531da); ?>
+<?php endif; ?>
+<?php /**PATH /home/aleksey/PhpstormProjects/poster_2/resources/views/dashboard.blade.php ENDPATH**/ ?>
