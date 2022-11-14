@@ -337,6 +337,11 @@ $response = Curl::to('https://www.lemhira.com/itemdetails.php?id=0')
                    
                         
                     ->post();
+
+
+
+                    return redirect()->route('add_advt')
+                    ->with('success','тестовое обьявление опубликовано');
                   //  dd($response);
                   
                 //  dd($response->headers);
