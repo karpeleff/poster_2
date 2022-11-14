@@ -21,7 +21,7 @@ class CreateAdvertsTable extends Migration
             $table->string('email');
             $table->string('cat');
             $table->string('header');
-            $table->string('text');
+            $table->longText('text');
             $table->string('image');
             $table->longText('status');
             $table->timestamps();

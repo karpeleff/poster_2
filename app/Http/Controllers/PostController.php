@@ -111,6 +111,19 @@ public function  akk_manager()
     return view('akk_manager');
 }
 
+
+public  function advt_list()
+{
+     return view('advt_list');
+}
+
+public  function akk_list()
+{
+     return view('advt_list');
+}
+
+
+
 public  function  akk_store(Request $request)
 {
     $record = new Account;
