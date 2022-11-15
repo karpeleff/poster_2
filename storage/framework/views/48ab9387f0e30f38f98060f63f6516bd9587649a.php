@@ -1,6 +1,4 @@
-@extends('layouts.app')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 <h4
 class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300"
 >
@@ -24,48 +22,34 @@ class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300"
       class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
     >
 
-    @foreach ($data as $item)
+    <?php $__currentLoopData = $data; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
       <tr class="text-gray-700 dark:text-gray-400">
        
         <td class="px-4 py-3">
-          <p>{{$item->login}}</p>
+          <p><?php echo e($item->login); ?></p>
         </td>
         <td class="px-4 py-3">
-          <p>{{$item->pass}}</p>
+          <p><?php echo e($item->pass); ?></p>
         </td>
         <td class="px-4 py-3">
-          <p>{{$item->proxy}}</p>
+          <p><?php echo e($item->proxy); ?></p>
         </td>
         <td class="px-4 py-3">
-          <p>{{$item->place}}</p>
+          <p><?php echo e($item->place); ?></p>
         </td>
          
       
         <td class="px-4 py-3">
           <div class="flex items-center space-x-4 text-sm">
-       {{--      <button
-              class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
-              aria-label="Edit"
-            >
-              <svg
-                class="w-5 h-5"
-                aria-hidden="true"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"
-                ></path>
-              </svg>
-            </button> --}}
+       
             <button
               class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
               aria-label="Delete"
             >
           
 
-<a href="/akk_del/{{$item->id}}">
+<a href="/akk_del/<?php echo e($item->id); ?>">
   <svg 
                 class="w-5 h-5"
                 aria-hidden="true"
@@ -87,7 +71,7 @@ class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300"
         </td>
       </tr>
 
-      @endforeach
+      <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
     
 
@@ -197,4 +181,5 @@ class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300"
 </div>
 </div>
 
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /home/aleksey/PhpstormProjects/poster_2/resources/views/akk_list.blade.php ENDPATH**/ ?>

@@ -131,6 +131,11 @@
                   <option>недвижимость</option>
                   <option>животные </option>
                   <option>образование</option>
+                  <option>транспорт</option>
+                  <option>знакомства</option>
+                  <option>коллекционирование</option>
+                  <option>бесплатно</option>
+                  <option></option>
                 </select>
               </label>
 

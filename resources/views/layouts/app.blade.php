@@ -191,7 +191,7 @@
       <!-- Mobile sidebar -->
       <!-- Backdrop -->
       
-      <aside
+    {{--   <aside
         class="fixed inset-y-0 z-20 flex-shrink-0 w-64 mt-16 overflow-y-auto bg-white dark:bg-gray-800 md:hidden"
         x-show="isSideMenuOpen"
         x-transition:enter="transition ease-in-out duration-150"
@@ -248,7 +248,7 @@
             </button>
           </div>
         </div>
-      </aside>
+      </aside> --}}
       <div class="flex flex-col flex-1 w-full">
         <header class="z-10 py-4 bg-white shadow-md dark:bg-gray-800">
           <div
@@ -303,7 +303,7 @@
           
           </div>
         </header>
-        <main class="h-full overflow-y-auto">
+        <main class="h-full overflow-y-auto"  id="app"  >
           <div class="container px-6 mx-auto grid">
            
             @yield('content')

@@ -122,7 +122,8 @@ public  function advt_list()
 
 public  function akk_list()
 {
-     return view('advt_list');
+    $data = Account::all();
+     return view('akk_list')->with('data', $data);
 }
 
 public  function advt_del($id)
@@ -131,6 +132,16 @@ public  function advt_del($id)
 
      return $this->advt_list();
 }
+
+public  function akk_del($id)
+{
+    Account::destroy($id);
+
+     return $this->akk_list();
+}
+
+
+
 
 
 public  function  akk_store(Request $request)
