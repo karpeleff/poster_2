@@ -9,7 +9,7 @@ use App\Http\Controllers\Api\v1\FormController;
 
 
 
-
+use App\Models\User;
 use App\Models\City;
 use App\Models\Category;
 use App\Models\SubCategory;
@@ -29,6 +29,11 @@ use App\Models\SubCategory;
 */
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});
+
+
+Route::get('user', function (Request $request) {
     return $request->user();
 });
 

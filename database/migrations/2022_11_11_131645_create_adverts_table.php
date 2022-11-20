@@ -20,6 +20,7 @@ class CreateAdvertsTable extends Migration
             $table->string('sity');
             $table->string('email');
             $table->string('cat');
+            $table->string('subcat');
             $table->string('header');
             $table->longText('text');
             $table->string('image');
