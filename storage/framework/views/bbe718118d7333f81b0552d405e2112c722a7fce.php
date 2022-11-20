@@ -1,6 +1,6 @@
 <?php $__env->startSection('content'); ?>
 <div class="container px-6 mx-auto grid">
-    <add_advt></add_advt>
+   
     <form_upload></form_upload>
 </div>
 

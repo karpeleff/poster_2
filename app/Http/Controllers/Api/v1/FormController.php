@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Api\v1;
 
+use App\Http\Resources\AdvertResource;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Advert;
@@ -24,14 +26,13 @@ class FormController extends Controller
         $name = '/images/' . uniqid() . '.' . $file->extension();
         $file->storePubliclyAs('public', $name);
         $data['image'] = $name;
-        $data['status'] = 'unpablic';
+        $data['status'] = 'unpublic';
 
-       // $user = User::create($data);
+        $advt = Advert::create($data);
 
        // return new UserResource($user);
+       return new AdvertResource($advt);
 
-       Advert::create($data);
-       //return response()->json(['success'=>'You have successfully upload file.']);
-
-       return 'успех';    }
+      
+    }
 }

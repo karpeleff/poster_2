@@ -5234,8 +5234,9 @@ __webpack_require__.r(__webpack_exports__);
       avatar: null,
       avatarName: null,
       showForm: true,
-      user: null,
-      errors: null
+      autor: null,
+      errors: null,
+      user: null
     };
   },
   methods: {
@@ -5253,7 +5254,7 @@ __webpack_require__.r(__webpack_exports__);
         }
       }).then(function (response) {
         _this.showForm = false;
-        _this.user = response.data.data;
+        _this.user = response.data;
       })["catch"](function (err) {
         if (err.response.status === 422) {
           _this.errors = [];
@@ -5463,7 +5464,7 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "card"
   }, [_c("div", {
-    staticClass: "card-header"
+    staticClass: "mt-6 mb-6 card-header"
   }, [_vm._v("Новое обьявление")]), _vm._v(" "), _c("div", {
     staticClass: "card-body"
   }, [_vm.errors ? _c("div", _vm._l(_vm.errors, function (error) {
@@ -5486,7 +5487,7 @@ var render = function render() {
       value: _vm.formData.autor,
       expression: "formData.autor"
     }],
-    staticClass: "form-control",
+    staticClass: "block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input",
     attrs: {
       id: "name",
       type: "text",
@@ -5520,7 +5521,7 @@ var render = function render() {
       value: _vm.formData.tel,
       expression: "formData.tel"
     }],
-    staticClass: "form-control",
+    staticClass: "block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input",
     attrs: {
       id: "email",
       type: "email",
@@ -5553,7 +5554,7 @@ var render = function render() {
       value: _vm.formData.email,
       expression: "formData.email"
     }],
-    staticClass: "form-control",
+    staticClass: "block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input",
     attrs: {
       id: "email",
       type: "email",
@@ -5577,7 +5578,7 @@ var render = function render() {
     attrs: {
       "for": "email"
     }
-  }, [_vm._v("город")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("Город")]), _vm._v(" "), _c("div", {
     staticClass: "col-md-6"
   }, [_c("select", {
     directives: [{
@@ -5586,7 +5587,7 @@ var render = function render() {
       value: _vm.formData.sity,
       expression: "formData.sity"
     }],
-    staticClass: "block w-f ull mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray",
+    staticClass: "block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray",
     attrs: {
       name: "sity"
     },
@@ -5923,7 +5924,71 @@ var render = function render() {
         _vm.$set(_vm.formData, "subcat", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
       }
     }
-  }, [_c("option", [_vm._v("автомобили")]), _vm._v(" "), _c("option", [_vm._v("работа")]), _vm._v(" "), _c("option", [_vm._v("недвижимость")]), _vm._v(" "), _c("option", [_vm._v("животные ")]), _vm._v(" "), _c("option", [_vm._v("образование")]), _vm._v(" "), _c("option", [_vm._v("транспорт")]), _vm._v(" "), _c("option", [_vm._v("знакомства")]), _vm._v(" "), _c("option", [_vm._v("коллекционирование")]), _vm._v(" "), _c("option", [_vm._v("бесплатно")]), _vm._v(" "), _c("option")])])])]), _vm._v(" "), _c("div", {
+  }, [_c("option", [_vm._v("автомобили")]), _vm._v(" "), _c("option", [_vm._v("работа")]), _vm._v(" "), _c("option", [_vm._v("недвижимость")]), _vm._v(" "), _c("option", [_vm._v("животные ")]), _vm._v(" "), _c("option", [_vm._v("образование")]), _vm._v(" "), _c("option", [_vm._v("транспорт")]), _vm._v(" "), _c("option", [_vm._v("знакомства")]), _vm._v(" "), _c("option", [_vm._v("коллекционирование")]), _vm._v(" "), _c("option", [_vm._v("бесплатно")]), _vm._v(" "), _c("option")])])]), _vm._v(" "), _c("div", {
+    staticClass: "form-group row"
+  }, [_c("label", {
+    staticClass: "col-md-4 col-form-label text-md-right",
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v("Заголовок")]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-6"
+  }, [_c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.formData.header,
+      expression: "formData.header"
+    }],
+    staticClass: "block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input",
+    attrs: {
+      id: "email",
+      type: "еtext",
+      name: "header",
+      required: "",
+      autocomplete: "email"
+    },
+    domProps: {
+      value: _vm.formData.header
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.$set(_vm.formData, "header", $event.target.value);
+      }
+    }
+  })])]), _vm._v(" "), _c("div", {
+    staticClass: "form-group row"
+  }, [_c("label", {
+    staticClass: "col-md-4 col-form-label text-md-right",
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v("Текст обьявления")]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-6"
+  }, [_c("textarea", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.formData.text,
+      expression: "formData.text"
+    }],
+    staticClass: "block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-textarea focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray",
+    attrs: {
+      rows: "3",
+      placeholder: "Enter some long form content.",
+      name: "text"
+    },
+    domProps: {
+      value: _vm.formData.text
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.$set(_vm.formData, "text", $event.target.value);
+      }
+    }
+  })])])]), _vm._v(" "), _c("div", {
     staticClass: "form-group row"
   }, [_c("label", {
     staticClass: "col-md-4 col-form-label text-md-right"
@@ -5954,7 +6019,7 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "col-md-6 offset-md-4"
   }, [_c("button", {
-    staticClass: "btn btn-primary",
+    staticClass: "mt-4 px-5 py-3 font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple",
     staticStyle: {
       background: "#42b983",
       border: "#42b983"
@@ -5968,16 +6033,16 @@ var render = function render() {
         return _vm.submit.apply(null, arguments);
       }
     }
-  }, [_vm._v("\n                  Register\n                ")])])])]) : _vm._e(), _vm._v(" "), _vm.user ? _c("div", [_c("div", {
+  }, [_vm._v("\n                    Отправить\n                  ")])])])]) : _vm._e(), _vm._v(" "), _vm.user ? _c("div", [_c("div", {
     staticClass: "alert alert-success"
-  }, [_vm._v("User created")]), _vm._v(" "), _c("div", [_c("img", {
+  }, [_vm._v("Обьявление добавлено ")]), _vm._v(" "), _c("div", [_c("img", {
     attrs: {
       height: "100px",
       width: "auto",
       src: _vm.user.avatar_url,
       alt: ""
     }
-  })]), _vm._v(" "), _c("div", [_vm._v("Name : " + _vm._s(_vm.user.name))]), _vm._v(" "), _c("div", [_vm._v("Email : " + _vm._s(_vm.user.email))])]) : _vm._e()])])])])]);
+  })]), _vm._v(" "), _c("div", [_vm._v("autor : " + _vm._s(_vm.user.autor))]), _vm._v(" "), _c("div", [_vm._v("Email : " + _vm._s(_vm.user.email))])]) : _vm._e()])])])])]);
 };
 var staticRenderFns = [];
 render._withStripped = true;
@@ -5999,7 +6064,7 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 window.Alpine = alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"];
 window.Vue = (__webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js")["default"]);
 axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-axios.defaults.baseURL = 'http://api.project.test'; // Backend URL for API
+axios.defaults.baseURL = 'http://127.0.0.1:8000'; // Backend URL for API
 
 Vue.component('example-component', (__webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]));
 //Vue.component('sendpost', require('./components/SendPost.vue').default);

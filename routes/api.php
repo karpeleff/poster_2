@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Resources\CityResource;
 use App\Http\Resources\CategoryResource;
 use App\Http\Resources\SubCategoryResource;
+use App\Http\Controllers\Api\v1\FormController;
+
 
 
 
@@ -55,7 +57,7 @@ Route::get('/subcategories', function () {
 
 
 //Route::post('/register', 'Api\v1\RegisterController@register');
-Route::post('register',[App\Http\Controllers\Api\v1\PostController::class, 'register'])->name('register'); 
+Route::post('register',[FormController::class, 'register'])->name('register'); 
 
 
 

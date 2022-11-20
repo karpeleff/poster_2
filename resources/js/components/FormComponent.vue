@@ -3,7 +3,7 @@
       <div class="row justify-content-center">
         <div class="col-md-8">
           <div class="card">
-            <div class="card-header">Новое обьявление</div>
+            <div class=" mt-6  mb-6  card-header">Новое обьявление</div>
   
             <div class="card-body">
   
@@ -20,7 +20,10 @@
   
                   <div class="col-md-6">
                     <!-- NOTICE v-model="formData.name" - THAT'S HOW IT GETS ATTACHED TO THE FIELD -->
-                    <input v-model="formData.autor" id="name" type="text" class="form-control" name="autor" required autocomplete="name" autofocus>
+                    <input v-model="formData.autor" id="name" 
+                    class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 
+                    focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                    type="text"  name="autor" required autocomplete="name" autofocus>
                   </div>
                 </div>
   
@@ -28,23 +31,30 @@
                   <label for="email" class="col-md-4 col-form-label text-md-right">Телефон</label>
   
                   <div class="col-md-6">
-                    <input v-model="formData.tel" id="email" type="email" class="form-control" name="tel" required autocomplete="email">
+                    <input v-model="formData.tel" id="email" type="email" 
+                    class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 
+                    focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                     name="tel" required autocomplete="email">
                   </div>
                 </div>
                 <div class="form-group row">
                   <label for="email" class="col-md-4 col-form-label text-md-right">Email</label>
   
                   <div class="col-md-6">
-                    <input v-model="formData.email" id="email" type="email" class="form-control" name="email" required autocomplete="email">
+                    <input v-model="formData.email" id="email" type="email"
+                    class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 
+                    focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                    name="email" required autocomplete="email">
                   </div>
                 </div>
 
                  <div class="form-group row">
-                  <label for="email" class="col-md-4 col-form-label text-md-right">город</label>
+                  <label for="email" class="col-md-4 col-form-label text-md-right">Город</label>
   
                   <div class="col-md-6">
                     <select    v-model="formData.sity"
-                  class="block w-f  ull mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+                  class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+                 
                   name="sity"
                 >
               
@@ -162,12 +172,32 @@
 
 
 
+                <div class="form-group row">
+                  <label for="" class="col-md-4 col-form-label text-md-right">Заголовок</label>
+  
+                  <div class="col-md-6">
+                    <input v-model="formData.header" id="email" type="еtext" 
+                    class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 
+                    focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                     name="header" required autocomplete="email">
+                  </div>
                 </div>
+
+                
+  <div class="form-group row">
+                  <label for="" class="col-md-4 col-form-label text-md-right">Текст обьявления</label>
   
-              
-  
-            
-  
+                  <div class="col-md-6">
+                    <textarea   v-model="formData.text"
+                  class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-textarea focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+                  rows="3"
+                  placeholder="Enter some long form content."
+                  name="text"
+                ></textarea>
+                  </div>
+                </div>
+                </div>
+           
                 <div class="form-group row">
                   <label class="col-md-4 col-form-label text-md-right">Фото</label>
                   <div class="col-md-6">
@@ -182,8 +212,11 @@
   
                 <div class="form-group row mb-0">
                   <div class="col-md-6 offset-md-4">
-                    <button @click.prevent="submit" type="submit" class="btn btn-primary" style="background: #42b983; border: #42b983;">
-                      Register
+                    <button @click.prevent="submit" type="submit" 
+                    class=" mt-4   px-5 py-3 font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 
+                    border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+                     style="background: #42b983; border: #42b983;">
+                      Отправить
                     </button>
                   </div>
                 </div>
@@ -191,11 +224,11 @@
   
               <!-- THIS IS THE RESULT BLOCK - SHOWING USER DATA IN CASE OF SUCCESS -->
               <div v-if="user">
-                <div class="alert alert-success">User created</div>
+                <div class="alert alert-success">Обьявление добавлено </div>
                 <div>
                   <img height="100px" width="auto" :src="user.avatar_url" alt="">
                 </div>
-                <div>Name : {{ user.name }}</div>
+                <div>autor : {{ user.autor }}</div>
                 <div>Email : {{ user.email }}</div>
               </div>
             </div>
@@ -224,8 +257,9 @@
           avatar: null,
           avatarName: null,
           showForm: true,
-          user: null,
+          autor: null,
           errors: null,
+         user: null,
         }
       },
       methods: {
@@ -250,7 +284,7 @@
           ).then(response => {
          
             this.showForm = false 
-            this.user = response.data.data
+            this.user = response.data
           }).catch(err => {
             if (err.response.status === 422) {
             
