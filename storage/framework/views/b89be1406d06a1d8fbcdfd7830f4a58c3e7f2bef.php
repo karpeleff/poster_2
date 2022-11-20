@@ -1,5 +1,5 @@
 <?php $__env->startSection('content'); ?>
-
+<div class="container px-6 mx-auto grid">
 
 <?php if($message = Session::get('success')): ?>
 <div class="alert alert-success">
@@ -14,7 +14,7 @@
               Новое обьявление
             </h2>
             <!-- CTA -->
-        <form  method="POST" enctype="multipart/form-data" method='<?php echo e(route('advt_store')); ?>'  >
+        <form  method="POST" enctype="multipart/form-data" action='<?php echo e(route('formSubmit')); ?>'  >
 <label class="block text-sm">
                 <span class="text-gray-700 dark:text-gray-400">Автор</span>
                 <input
@@ -173,5 +173,7 @@
               </div>
               <?php echo csrf_field(); ?>
               </form>
+            
+              <div>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /home/aleksey/PhpstormProjects/poster_2/resources/views/add_advt.blade.php ENDPATH**/ ?>

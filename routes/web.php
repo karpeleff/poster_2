@@ -43,3 +43,7 @@ Route::post('akk_store', [App\Http\Controllers\PostController::class, 'akk_store
  Route::get('akk_list', [App\Http\Controllers\PostController::class, 'akk_list'])->name('akk_list'); 
  Route::get('advt_del/{id}', [App\Http\Controllers\PostController::class, 'advt_del'])->name('advt_del'); 
  Route::get('akk_del/{id}', [App\Http\Controllers\PostController::class, 'akk_del'])->name('akk_del'); 
+ 
+ Route::get('new_advrt', [App\Http\Controllers\PostController::class, 'new_advrt'])->name('new_advrt'); 
+
+ Route::post('formSubmit',[App\Http\Controllers\PostController::class, 'formSubmit'])->name('formSubmit'); 

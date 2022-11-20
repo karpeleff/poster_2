@@ -15,6 +15,10 @@ class CreateSubCategoriesTable extends Migration
     {
         Schema::create('sub_categories', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('category_id');
+            $table->string('link')->nullable();
+            $table->string('board_id')->nullable();
             $table->timestamps();
         });
     }

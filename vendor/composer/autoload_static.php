@@ -536,6 +536,7 @@ class ComposerStaticInite11971f5296a91da93466630dd4e2ea2
         'App\\Http\\Requests\\Auth\\LoginRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Auth/LoginRequest.php',
         'App\\Models\\Account' => __DIR__ . '/../..' . '/app/Models/Account.php',
         'App\\Models\\Advert' => __DIR__ . '/../..' . '/app/Models/Advert.php',
+        'App\\Models\\Board' => __DIR__ . '/../..' . '/app/Models/Board.php',
         'App\\Models\\Category' => __DIR__ . '/../..' . '/app/Models/Category.php',
         'App\\Models\\City' => __DIR__ . '/../..' . '/app/Models/City.php',
         'App\\Models\\File' => __DIR__ . '/../..' . '/app/Models/File.php',

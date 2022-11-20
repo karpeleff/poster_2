@@ -16,6 +16,7 @@ class Advert extends Model
         'cat',
         'header',
         'text',
-        'image'
+        'image',
+        'status'
     ];
 }

@@ -1,4 +1,5 @@
 <?php $__env->startSection('content'); ?>
+<div class="container px-6 mx-auto grid">
 <h4
 class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300"
 >
@@ -227,6 +228,6 @@ class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300"
   </span>
 </div>
 </div>
-
+</div>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /home/aleksey/PhpstormProjects/poster_2/resources/views/advt_list.blade.php ENDPATH**/ ?>

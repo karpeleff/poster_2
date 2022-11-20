@@ -33,6 +33,11 @@ public function  add_advt()
     return view('add_advt');
 }
 
+
+public function  new_advrt()
+{
+    return view('new_advrt');
+}
 public  function  ffadvt_store(Request $request)
 {
   // dd($request); 
@@ -91,10 +96,13 @@ public function advt_store(Request $request)
         $destinationPath = storage_path('images/');//'image/';
         $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
         $image->move($destinationPath, $profileImage);
-        $input['image'] = "$profileImage";
-        $input['status'] = "unpublished";
-    }
+        $input['image']  = $profileImage;
+        $input['status'] = 'unpablic';
 
+
+        //dd($input);
+    }
+    //$input['status'] = "unpublished";
     Advert::create($input);
  
     return redirect()->route('add_advt')
@@ -398,12 +406,51 @@ public   function   post(Request $request)
     echo "$name: $value\n";
 }
 
-
-
-
-
-
 }
+
+public function formSubmit(Request $request)
+{
+
+//dd($request);
+
+/* $image = $request->file('image');
+
+$name = $image->getClientOriginalExtension();
+    
+   // $fileName = time().'.'.$request->file->getClientOriginalExtension();
+    $fileName = time().'.'.$name;
+    $request->file->move(public_path('upload'), $fileName); */
+
+
+/*    $request->validate([
+        'name' => 'required',
+        'detail' => 'required',
+        'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+    ]);
+ */
+$input = $request->all();
+
+if ($image = $request->file('image')) {
+    $destinationPath = storage_path('images/');//'image/';
+    $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+    $image->move($destinationPath, $profileImage);
+    $input['image']  = $profileImage;
+    $input['status'] = 'unpablic';
+
+
+    //dd($input);
+}
+//$input['status'] = "unpublished";
+Advert::create($input);
+
+
+//$out = dd()
+
+return response();     
+    //return response()->json(['success'=>'You have successfully upload file.']);
+}
+
+
 
 
 }

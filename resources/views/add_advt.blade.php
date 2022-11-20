@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+<div class="container px-6 mx-auto grid">
 
 @if ($message = Session::get('success'))
 <div class="alert alert-success">
@@ -16,7 +16,7 @@
               Новое обьявление
             </h2>
             <!-- CTA -->
-        <form  method="POST" enctype="multipart/form-data" method='{{route('advt_store')}}'  >
+        <form  method="POST" enctype="multipart/form-data" action='{{route('formSubmit')}}'  >
 <label class="block text-sm">
                 <span class="text-gray-700 dark:text-gray-400">Автор</span>
                 <input
@@ -175,4 +175,6 @@
               </div>
               @csrf
               </form>
+            
+              <div>
 @endsection
