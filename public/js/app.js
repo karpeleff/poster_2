@@ -5231,17 +5231,36 @@ __webpack_require__.r(__webpack_exports__);
         cat: null,
         subcat: null
       },
+      board: null,
       avatar: null,
       avatarName: null,
       showForm: true,
       autor: null,
       errors: null,
-      user: null
+      user: null,
+      userinfo: null,
+      sity: [],
+      cat: [],
+      subcat: []
     };
   },
   methods: {
-    submit: function submit() {
+    getSity: function getSity() {
       var _this = this;
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/cities').then(function (response) {
+        //console.log(response.data);
+        _this.sity = response.data;
+      });
+    },
+    getUserInfo: function getUserInfo() {
+      var _this2 = this;
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/user').then(function (response) {
+        //console.log(response.data);
+        _this2.userinfo = response.data;
+      });
+    },
+    submit: function submit() {
+      var _this3 = this;
       this.errors = null;
       var formData = new FormData();
       formData.append('avatar', this.avatar);
@@ -5253,14 +5272,14 @@ __webpack_require__.r(__webpack_exports__);
           'Content-Type': "multipart/form-data; charset=utf-8; boundary=" + Math.random().toString().substr(2)
         }
       }).then(function (response) {
-        _this.showForm = false;
-        _this.user = response.data;
+        _this3.showForm = false;
+        _this3.user = response.data;
       })["catch"](function (err) {
         if (err.response.status === 422) {
-          _this.errors = [];
+          _this3.errors = [];
           lodash__WEBPACK_IMPORTED_MODULE_1___default().each(err.response.data.errors, function (error) {
             lodash__WEBPACK_IMPORTED_MODULE_1___default().each(error, function (e) {
-              _this.errors.push(e);
+              _this3.errors.push(e);
             });
           });
         }
@@ -5269,8 +5288,22 @@ __webpack_require__.r(__webpack_exports__);
     handleFileObject: function handleFileObject() {
       this.avatar = this.$refs.file.files[0];
       this.avatarName = this.avatar.name;
+    },
+    getCookie: function getCookie() {
+      // it gets the cookie called `username`
+      var userid = this.$cookies.get("username");
+      console.log(userid);
     }
-  }
+  },
+  mounted: function mounted() {
+    this.getSity();
+    //this.getCookie();
+
+    ;
+  },
+  created: function created() {},
+  watch: {},
+  computed: {}
 });
 
 /***/ }),
@@ -5572,6 +5605,65 @@ var render = function render() {
       }
     }
   })])]), _vm._v(" "), _c("div", {
+    staticClass: "form-group row",
+    attrs: {
+      "mt-4": ""
+    }
+  }, [_c("label", {
+    staticClass: "col-md-4 col-form-label text-md-right",
+    attrs: {
+      "for": "email"
+    }
+  }, [_vm._v("Рекламная площадка ")]), _vm._v(" "), _c("label", {
+    staticClass: "col-md-4 col-form-label text-md-right",
+    attrs: {
+      "for": "email"
+    }
+  }, [_vm._v(_vm._s(_vm.board))]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-6"
+  }, [_c("select", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.board,
+      expression: "board"
+    }],
+    staticClass: "block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray",
+    attrs: {
+      name: "subcat"
+    },
+    on: {
+      change: function change($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+          return o.selected;
+        }).map(function (o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val;
+        });
+        _vm.board = $event.target.multiple ? $$selectedVal : $$selectedVal[0];
+      }
+    }
+  }, [_c("option", {
+    attrs: {
+      value: "1"
+    }
+  }, [_vm._v("https://www.lemhira.com")]), _vm._v(" "), _c("option", {
+    attrs: {
+      value: "2"
+    }
+  }, [_vm._v("https://doska.israelinfo.co.il/")]), _vm._v(" "), _c("option", {
+    attrs: {
+      value: "3"
+    }
+  }, [_vm._v("https://doska.orbita.co.il/")]), _vm._v(" "), _c("option", {
+    attrs: {
+      value: "4"
+    }
+  }, [_vm._v("http://www.isra.com/do/")]), _vm._v(" "), _c("option", {
+    attrs: {
+      value: "5"
+    }
+  }, [_vm._v("https://leboard.ru/il")])])])]), _vm._v(" "), _c("div", {
     staticClass: "form-group row"
   }, [_c("label", {
     staticClass: "col-md-4 col-form-label text-md-right",
@@ -5602,267 +5694,11 @@ var render = function render() {
         _vm.$set(_vm.formData, "sity", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
       }
     }
-  }, [_c("option", {
-    attrs: {
-      value: "0"
-    }
-  }, [_vm._v("Все города")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "185204"
-    }
-  }, [_vm._v("Азор")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "38"
-    }
-  }, [_vm._v("Акко")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "37"
-    }
-  }, [_vm._v("Арад")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "19"
-    }
-  }, [_vm._v("Ариэль")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "40"
-    }
-  }, [_vm._v("Афула")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "21"
-    }
-  }, [_vm._v("Ашдод")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "6"
-    }
-  }, [_vm._v("Ашкелон")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "11"
-    }
-  }, [_vm._v("Бат Ям")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "185019"
-    }
-  }, [_vm._v("Бейт Шемеш")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "17"
-    }
-  }, [_vm._v("Беэр Шева")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "185208"
-    }
-  }, [_vm._v("Бней Аиш")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "752"
-    }
-  }, [_vm._v("Бней Брак")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "34"
-    }
-  }, [_vm._v("Герцелия")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "31"
-    }
-  }, [_vm._v("Гиватаим")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "18"
-    }
-  }, [_vm._v("Димона")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "185186"
-    }
-  }, [_vm._v("Ейн Бокек")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "7"
-    }
-  }, [_vm._v("Иерусалим")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "185007"
-    }
-  }, [_vm._v("Йехуд-Моноссон")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "185018"
-    }
-  }, [_vm._v("Йокнеам Илит")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "185104"
-    }
-  }, [_vm._v("Кармиэль")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "185008"
-    }
-  }, [_vm._v("Кацрин")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "185151"
-    }
-  }, [_vm._v("Кирьят Ата")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "184988"
-    }
-  }, [_vm._v("Кирьят Бьялик")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "39"
-    }
-  }, [_vm._v("Кирьят Гат")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "185217"
-    }
-  }, [_vm._v("Кирьят Малахи")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "185164"
-    }
-  }, [_vm._v("Кирьят Моцкин")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "185021"
-    }
-  }, [_vm._v("Кирьят Оно")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "185114"
-    }
-  }, [_vm._v("Кирьят Шмона")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "185206"
-    }
-  }, [_vm._v("Кирьят Экрон")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "185071"
-    }
-  }, [_vm._v("Кирьят Ям")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "36"
-    }
-  }, [_vm._v("Кфар Саба")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "16"
-    }
-  }, [_vm._v("Лод")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "185218"
-    }
-  }, [_vm._v("Маале Адумим")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "185011"
-    }
-  }, [_vm._v("Маалот-Таршиха")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "185012"
-    }
-  }, [_vm._v("Мигдаль аЭмек")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "9"
-    }
-  }, [_vm._v("Модиин")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "185013"
-    }
-  }, [_vm._v("Нагария")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "3"
-    }
-  }, [_vm._v("Натания")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "32"
-    }
-  }, [_vm._v("Нацерет")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "33"
-    }
-  }, [_vm._v("Нацерет Илит")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "185113"
-    }
-  }, [_vm._v("Нес Циона")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "185057"
-    }
-  }, [_vm._v("Нетивот")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "185169"
-    }
-  }, [_vm._v("Нешер")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "185005"
-    }
-  }, [_vm._v("Од аШарон")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "185049"
-    }
-  }, [_vm._v("Ор Акива")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "20"
-    }
-  }, [_vm._v("Ор Йегуда")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "185009"
-    }
-  }, [_vm._v("Офаким")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "2"
-    }
-  }, [_vm._v("Петах Тиква")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "12"
-    }
-  }, [_vm._v("Раанана")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "30"
-    }
-  }, [_vm._v("Рамат Ган")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "15"
-    }
-  }, [_vm._v("Рамле")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "14"
-    }
-  }, [_vm._v("Реховот")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "13"
-    }
-  }, [_vm._v("Ришон ле-Цион")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "22"
-    }
-  }, [_vm._v("Рош Айн")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "185207"
-    }
-  }, [_vm._v("Рош Пина")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "185134"
-    }
-  }, [_vm._v("Сдерот")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "8"
-    }
-  }, [_vm._v("Тверия")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "1"
-    }
-  }, [_vm._v("Тель Авив - Яфо")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "753"
-    }
-  }, [_vm._v("Хадера")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "4"
-    }
-  }, [_vm._v("Хайфа")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "185214"
-    }
-  }, [_vm._v("Хариш")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "5"
-    }
-  }, [_vm._v("Холон")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "10"
-    }
-  }, [_vm._v("Эйлат")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "185010"
-    }
-  }, [_vm._v("Явне")])])]), _vm._v(" "), _c("div", {
+  }, _vm._l(_vm.sity, function (item) {
+    return _c("option", {
+      key: item.id
+    }, [_vm._v("\n                " + _vm._s(item.name) + "\n                ")]);
+  }), 0)]), _vm._v(" "), _c("div", {
     staticClass: "form-group row"
   }, [_c("label", {
     staticClass: "col-md-4 col-form-label text-md-right",
@@ -6059,18 +5895,23 @@ render._withStripped = true;
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var alpinejs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/module.esm.js");
+/* harmony import */ var vue_cookies__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-cookies */ "./node_modules/vue-cookies/vue-cookies.js");
+/* harmony import */ var vue_cookies__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_cookies__WEBPACK_IMPORTED_MODULE_1__);
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+
 
 window.Alpine = alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"];
 window.Vue = (__webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js")["default"]);
 axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-axios.defaults.baseURL = 'http://note.servicebox.info/'; // Backend URL for API
+//axios.defaults.baseURL = 'http://note.servicebox.info/' // Backend URL for API
+axios.defaults.baseURL = 'http://127.0.0.1:8000/'; // Backend URL for API
 
 Vue.component('example-component', (__webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]));
 //Vue.component('sendpost', require('./components/SendPost.vue').default);
 Vue.component('akk_manager', (__webpack_require__(/*! ./components/Akk_manager.vue */ "./resources/js/components/Akk_manager.vue")["default"]));
 Vue.component('add_advt', (__webpack_require__(/*! ./components/AddAdvtComponent.vue */ "./resources/js/components/AddAdvtComponent.vue")["default"]));
 Vue.component('form_upload', (__webpack_require__(/*! ./components/FormComponent.vue */ "./resources/js/components/FormComponent.vue")["default"]));
+Vue.use((vue_cookies__WEBPACK_IMPORTED_MODULE_1___default()));
 alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"].start();
 var app = new Vue({
   el: '#app'
@@ -32545,6 +32386,161 @@ module.exports = function (list, options) {
     lastIdentifiers = newLastIdentifiers;
   };
 };
+
+/***/ }),
+
+/***/ "./node_modules/vue-cookies/vue-cookies.js":
+/*!*************************************************!*\
+  !*** ./node_modules/vue-cookies/vue-cookies.js ***!
+  \*************************************************/
+/***/ ((module) => {
+
+/**
+ * Vue Cookies v1.8.2
+ * https://github.com/cmp-cc/vue-cookies
+ *
+ * Copyright 2016, cmp-cc
+ * Released under the MIT license
+ */
+
+ (function () {
+
+  var defaultConfig = {
+    expires: '1d',
+    path: '; path=/',
+    domain: '',
+    secure: '',
+    sameSite: '; SameSite=Lax'
+  };
+
+  var VueCookies = {
+    // install of Vue
+    install: function (Vue, options) {
+      if (options) this.config(options.expires, options.path, options.domain, options.secure, options.sameSite);
+      if (Vue.prototype) Vue.prototype.$cookies = this;
+      if (Vue.config && Vue.config.globalProperties) {
+        Vue.config.globalProperties.$cookies = this;
+        Vue.provide('$cookies', this);
+      }
+      Vue.$cookies = this;
+    },
+    config: function (expires, path, domain, secure, sameSite) {
+      defaultConfig.expires = expires ? expires : '1d';
+      defaultConfig.path = path ? '; path=' + path : '; path=/';
+      defaultConfig.domain = domain ? '; domain=' + domain : '';
+      defaultConfig.secure = secure ? '; Secure' : '';
+      defaultConfig.sameSite = sameSite ? '; SameSite=' + sameSite : '; SameSite=Lax';
+    },
+    get: function (key) {
+      var value = decodeURIComponent(document.cookie.replace(new RegExp('(?:(?:^|.*;)\\s*' + encodeURIComponent(key).replace(/[\-\.\+\*]/g, '\\$&') + '\\s*\\=\\s*([^;]*).*$)|^.*$'), '$1')) || null;
+
+      if (value && ((value.substring(0, 1) === '{' && value.substring(value.length - 1, value.length) === '}') || (value.substring(0, 1) === '[' && value.substring(value.length - 1, value.length) === ']'))) {
+        try {
+          value = JSON.parse(value);
+        } catch (e) {
+          return value;
+        }
+      }
+      return value;
+    },
+    set: function (key, value, expires, path, domain, secure, sameSite) {
+      if (!key) {
+        throw new Error('Cookie name is not found in the first argument.');
+      } else if (/^(?:expires|max\-age|path|domain|secure|SameSite)$/i.test(key)) {
+        throw new Error('Cookie name illegality. Cannot be set to ["expires","max-age","path","domain","secure","SameSite"]\t current key name: ' + key);
+      }
+      // support json object
+      if (value && value.constructor === Object) {
+        value = JSON.stringify(value);
+      }
+      var _expires = '';
+      expires = expires == undefined ? defaultConfig.expires : expires;
+      if (expires && expires != 0) {
+        switch (expires.constructor) {
+          case Number:
+            if (expires === Infinity || expires === -1) _expires = '; expires=Fri, 31 Dec 9999 23:59:59 GMT';
+            else _expires = '; max-age=' + expires;
+            break;
+          case String:
+            if (/^(?:\d+(y|m|d|h|min|s))$/i.test(expires)) {
+              // get capture number group
+              var _expireTime = expires.replace(/^(\d+)(?:y|m|d|h|min|s)$/i, '$1');
+              // get capture type group , to lower case
+              switch (expires.replace(/^(?:\d+)(y|m|d|h|min|s)$/i, '$1').toLowerCase()) {
+                  // Frequency sorting
+                case 'm':
+                  _expires = '; max-age=' + +_expireTime * 2592000;
+                  break; // 60 * 60 * 24 * 30
+                case 'd':
+                  _expires = '; max-age=' + +_expireTime * 86400;
+                  break; // 60 * 60 * 24
+                case 'h':
+                  _expires = '; max-age=' + +_expireTime * 3600;
+                  break; // 60 * 60
+                case 'min':
+                  _expires = '; max-age=' + +_expireTime * 60;
+                  break; // 60
+                case 's':
+                  _expires = '; max-age=' + _expireTime;
+                  break;
+                case 'y':
+                  _expires = '; max-age=' + +_expireTime * 31104000;
+                  break; // 60 * 60 * 24 * 30 * 12
+                default:
+                  new Error('unknown exception of "set operation"');
+              }
+            } else {
+              _expires = '; expires=' + expires;
+            }
+            break;
+          case Date:
+            _expires = '; expires=' + expires.toUTCString();
+            break;
+        }
+      }
+      document.cookie =
+          encodeURIComponent(key) + '=' + encodeURIComponent(value) +
+          _expires +
+          (domain ? '; domain=' + domain : defaultConfig.domain) +
+          (path ? '; path=' + path : defaultConfig.path) +
+          (secure == undefined ? defaultConfig.secure : secure ? '; Secure' : '') +
+          (sameSite == undefined ? defaultConfig.sameSite : (sameSite ? '; SameSite=' + sameSite : ''));
+      return this;
+    },
+    remove: function (key, path, domain) {
+      if (!key || !this.isKey(key)) {
+        return false;
+      }
+      document.cookie = encodeURIComponent(key) +
+          '=; expires=Thu, 01 Jan 1970 00:00:00 GMT' +
+          (domain ? '; domain=' + domain : defaultConfig.domain) +
+          (path ? '; path=' + path : defaultConfig.path) +
+          '; SameSite=Lax';
+      return true;
+    },
+    isKey: function (key) {
+      return (new RegExp('(?:^|;\\s*)' + encodeURIComponent(key).replace(/[\-\.\+\*]/g, '\\$&') + '\\s*\\=')).test(document.cookie);
+    },
+    keys: function () {
+      if (!document.cookie) return [];
+      var _keys = document.cookie.replace(/((?:^|\s*;)[^\=]+)(?=;|$)|^\s*|\s*(?:\=[^;]*)?(?:\1|$)/g, '').split(/\s*(?:\=[^;]*)?;\s*/);
+      for (var _index = 0; _index < _keys.length; _index++) {
+        _keys[_index] = decodeURIComponent(_keys[_index]);
+      }
+      return _keys;
+    }
+  };
+
+  if (true) {
+    module.exports = VueCookies;
+  } else {}
+  // vue-cookies can exist independently,no dependencies library
+  if (typeof window !== 'undefined') {
+    window.$cookies = VueCookies;
+  }
+
+})();
+
 
 /***/ }),
 

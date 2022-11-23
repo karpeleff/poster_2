@@ -25,6 +25,7 @@
     },
     "dependencies": {
         "luxon": "^1.28.0",
+        "vue-cookies": "^1.8.2",
         "vue-datetime": "^1.0.0-beta.14",
         "vue-notification-ui": "^1.0.4",
         "weekstart": "^1.1.0"

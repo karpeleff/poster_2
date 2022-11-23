@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\PostController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -47,3 +49,4 @@ Route::post('akk_store', [App\Http\Controllers\PostController::class, 'akk_store
  Route::get('new_advrt', [App\Http\Controllers\PostController::class, 'new_advrt'])->name('new_advrt'); 
 
  Route::post('formSubmit',[App\Http\Controllers\PostController::class, 'formSubmit'])->name('formSubmit'); 
+

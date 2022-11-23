@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Advert;
 use App\Models\Account;
+use App\Models\Board;
+use App\Models\Category;
+use App\Models\SubCategory;
+use App\Models\City;
 
 use Illuminate\Http\Request;
 
@@ -17,6 +21,8 @@ use Intervention\Image\Facades\Image;
 
 use Ixudra\Curl\Facades\Curl;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
+
 
 class PostController extends Controller
 {
@@ -28,16 +34,36 @@ class PostController extends Controller
     }
 
 
+ 
+
+
 public function  add_advt()
 {
+    //echo Auth::user()->id ;
+
     return view('add_advt');
+}
+
+
+public function userinfo ()
+{
+    $id =  Auth::user()->id ;
+
+   // echo Auth::user()->id ;
+
+    return new UserResource(User::findOrFail($id));
 }
 
 
 public function  new_advrt()
 {
-    return view('new_advrt');
+
+$name = Auth::user()->name;
+
+   // return view('new_advrt');
+   return response(view('new_advrt'))->cookie('username',$name,10);
 }
+
 public  function  ffadvt_store(Request $request)
 {
   // dd($request); 
