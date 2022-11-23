@@ -10,6 +10,7 @@ use App\Models\SubCategory;
 use App\Models\Category;
 use App\Models\City;
 use App\Models\Board;
+use App\Models\Advert;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -56,6 +57,7 @@ class FormController extends Controller
     public  function  getCategory($id)
     {
         $data = Category::where('board_id',$id)->get();
+        return response()->json($data);
     }
 
     public  function  getSubCategory($id)

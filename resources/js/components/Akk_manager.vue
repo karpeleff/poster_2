@@ -6,7 +6,7 @@
               Менеджер аккаунтов и площадок 
             </h2>
             <!-- CTA -->
-        <form  method="POST"  action='' >
+        <form  method="POST"  action='/akk_store' >
 <label class="block text-sm">
                 <span class="text-gray-700 dark:text-gray-400">Логин</span>
                 <input

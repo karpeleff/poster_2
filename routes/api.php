@@ -71,6 +71,7 @@ Route::get('/subcategories', function () {
 
 
 Route::get('/subcategory/{id}',[FormController::class, 'getSubCategory']);
+Route::get('/category/{id}',[FormController::class, 'getCategory']);
 Route::get('/cities',[FormController::class, 'getCity']);
  
 
