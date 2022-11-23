@@ -5227,6 +5227,7 @@ __webpack_require__.r(__webpack_exports__);
         autor: null,
         tel: null,
         email: null,
+        board: null,
         sity: null,
         cat: null,
         subcat: null
@@ -5245,22 +5246,36 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    getSity: function getSity() {
+    getSubCat: function getSubCat() {
       var _this = this;
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/subcategory/' + this.board).then(function (response) {
+        //console.log(response.data);
+        _this.subcat = response.data;
+      });
+    },
+    getCat: function getCat() {
+      var _this2 = this;
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/category/' + this.board).then(function (response) {
+        //console.log(response.data);
+        _this2.cat = response.data;
+      });
+    },
+    getSity: function getSity() {
+      var _this3 = this;
       axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/cities').then(function (response) {
         //console.log(response.data);
-        _this.sity = response.data;
+        _this3.sity = response.data;
       });
     },
     getUserInfo: function getUserInfo() {
-      var _this2 = this;
+      var _this4 = this;
       axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/user').then(function (response) {
         //console.log(response.data);
-        _this2.userinfo = response.data;
+        _this4.userinfo = response.data;
       });
     },
     submit: function submit() {
-      var _this3 = this;
+      var _this5 = this;
       this.errors = null;
       var formData = new FormData();
       formData.append('avatar', this.avatar);
@@ -5272,14 +5287,14 @@ __webpack_require__.r(__webpack_exports__);
           'Content-Type': "multipart/form-data; charset=utf-8; boundary=" + Math.random().toString().substr(2)
         }
       }).then(function (response) {
-        _this3.showForm = false;
-        _this3.user = response.data;
+        // this.showForm = false 
+        _this5.user = response.data;
       })["catch"](function (err) {
         if (err.response.status === 422) {
-          _this3.errors = [];
+          _this5.errors = [];
           lodash__WEBPACK_IMPORTED_MODULE_1___default().each(err.response.data.errors, function (error) {
             lodash__WEBPACK_IMPORTED_MODULE_1___default().each(error, function (e) {
-              _this3.errors.push(e);
+              _this5.errors.push(e);
             });
           });
         }
@@ -5302,7 +5317,14 @@ __webpack_require__.r(__webpack_exports__);
     ;
   },
   created: function created() {},
-  watch: {},
+  watch: {
+    board: function board() {
+      this.formData.board = this.board;
+      //alert(this.formData.board);
+
+      this.getSubCat();
+    }
+  },
   computed: {}
 });
 
@@ -5729,7 +5751,11 @@ var render = function render() {
         _vm.$set(_vm.formData, "cat", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
       }
     }
-  }, [_c("option", [_vm._v("автомобили")]), _vm._v(" "), _c("option", [_vm._v("работа")]), _vm._v(" "), _c("option", [_vm._v("недвижимость")]), _vm._v(" "), _c("option", [_vm._v("животные ")]), _vm._v(" "), _c("option", [_vm._v("образование")]), _vm._v(" "), _c("option", [_vm._v("транспорт")]), _vm._v(" "), _c("option", [_vm._v("знакомства")]), _vm._v(" "), _c("option", [_vm._v("коллекционирование")]), _vm._v(" "), _c("option", [_vm._v("бесплатно")]), _vm._v(" "), _c("option")])])]), _vm._v(" "), _c("div", {
+  }, _vm._l(_vm.cat, function (item) {
+    return _c("option", {
+      key: item.id
+    }, [_vm._v("\n                  " + _vm._s(item.name) + "\n                ")]);
+  }), 0)])]), _vm._v(" "), _c("div", {
     staticClass: "form-group row"
   }, [_c("label", {
     staticClass: "col-md-4 col-form-label text-md-right",
@@ -5760,7 +5786,11 @@ var render = function render() {
         _vm.$set(_vm.formData, "subcat", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
       }
     }
-  }, [_c("option", [_vm._v("автомобили")]), _vm._v(" "), _c("option", [_vm._v("работа")]), _vm._v(" "), _c("option", [_vm._v("недвижимость")]), _vm._v(" "), _c("option", [_vm._v("животные ")]), _vm._v(" "), _c("option", [_vm._v("образование")]), _vm._v(" "), _c("option", [_vm._v("транспорт")]), _vm._v(" "), _c("option", [_vm._v("знакомства")]), _vm._v(" "), _c("option", [_vm._v("коллекционирование")]), _vm._v(" "), _c("option", [_vm._v("бесплатно")]), _vm._v(" "), _c("option")])])]), _vm._v(" "), _c("div", {
+  }, _vm._l(_vm.subcat, function (item) {
+    return _c("option", {
+      key: item.id
+    }, [_vm._v("\n                  " + _vm._s(item.name) + "\n                ")]);
+  }), 0)])]), _vm._v(" "), _c("div", {
     staticClass: "form-group row"
   }, [_c("label", {
     staticClass: "col-md-4 col-form-label text-md-right",
@@ -5779,7 +5809,7 @@ var render = function render() {
     staticClass: "block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input",
     attrs: {
       id: "email",
-      type: "еtext",
+      type: "text",
       name: "header",
       required: "",
       autocomplete: "email"

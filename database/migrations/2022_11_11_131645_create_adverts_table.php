@@ -15,16 +15,18 @@ class CreateAdvertsTable extends Migration
     {
         Schema::create('adverts', function (Blueprint $table) {
             $table->id();
-            $table->string('autor');
-            $table->string('tel');
-            $table->string('sity');
-            $table->string('email');
-            $table->string('cat');
-            $table->string('subcat');
-            $table->string('header');
-            $table->longText('text');
-            $table->string('image');
-            $table->longText('status');
+            $table->string('autor')->nullable();
+            $table->string('tel')->nullable();
+            $table->string('sity')->nullable();
+            $table->string('sity_id')->nullable();
+            $table->string('email')->nullable();
+            $table->string('cat')->nullable();
+            $table->string('subcat')->nullable();
+            $table->string('board')->nullable();
+            $table->string('header')->nullable();
+            $table->longText('text')->nullable();
+            $table->string('image')->nullable();
+            $table->longText('status')->nullable();
             $table->timestamps();
         });
     }

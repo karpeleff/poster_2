@@ -91,16 +91,10 @@
                   class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
                   name="cat"
                 >
-                  <option>автомобили</option>
-                  <option>работа</option>
-                  <option>недвижимость</option>
-                  <option>животные </option>
-                  <option>образование</option>
-                  <option>транспорт</option>
-                  <option>знакомства</option>
-                  <option>коллекционирование</option>
-                  <option>бесплатно</option>
-                  <option></option>
+                  <option v-for="item  in cat"    :key="item.id" >
+                    {{ item.name }}
+                  </option>
+                 
                 </select>
                   </div>
                 </div>
@@ -113,16 +107,10 @@
                   class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
                   name="subcat"
                 >
-                  <option>автомобили</option>
-                  <option>работа</option>
-                  <option>недвижимость</option>
-                  <option>животные </option>
-                  <option>образование</option>
-                  <option>транспорт</option>
-                  <option>знакомства</option>
-                  <option>коллекционирование</option>
-                  <option>бесплатно</option>
-                  <option></option>
+                  <option v-for="item  in subcat"    :key="item.id">
+                    {{ item.name }}
+                  </option>
+                
                 </select>
                   </div>
                 </div>
@@ -133,7 +121,7 @@
                   <label for="" class="col-md-4 col-form-label text-md-right">Заголовок</label>
   
                   <div class="col-md-6">
-                    <input v-model="formData.header" id="email" type="еtext" 
+                    <input v-model="formData.header" id="email" type="text" 
                     class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 
                     focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                      name="header" required autocomplete="email">
@@ -207,6 +195,7 @@
             autor: null,
             tel: null,
             email: null,
+            board: null,
             sity: null,
             cat: null,
             subcat: null,
@@ -225,6 +214,22 @@
         }
       },
       methods: {
+
+        getSubCat(){
+          axios.get('/api/subcategory/'+this.board)
+                     .then((response)=>{
+//console.log(response.data);
+                      this.subcat = response.data
+                     })
+        },
+
+        getCat(){
+          axios.get('/api/category/'+this.board)
+                     .then((response)=>{
+//console.log(response.data);
+                      this.cat = response.data
+                     })
+        },
 
         getSity(){
                 axios.get('/api/cities')
@@ -261,7 +266,7 @@
             }
           ).then(response => {
          
-            this.showForm = false 
+           // this.showForm = false 
             this.user = response.data
           }).catch(err => {
             if (err.response.status === 422) {
@@ -291,6 +296,7 @@
              
   this.getSity();
   //this.getCookie();
+ 
 
  ;
     },
@@ -298,7 +304,13 @@
           
         },
         watch: {
+          board: function(){
+            this.formData.board = this.board; 
+            //alert(this.formData.board);
 
+            this.getSubCat();
+
+          }
         },
         computed: {
 
