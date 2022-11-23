@@ -29,15 +29,25 @@ class FormController extends Controller
 
        $data = $request->all();
 
-        $file = $request->file('avatar');
-        $name = '/images/' . uniqid() . '.' . $file->extension();
-        $file->storePubliclyAs('public', $name);
+        $image = $request->file('avatar');
+        $destinationPath = storage_path('images/');
+        $name = '/' . uniqid() . '.' . $image->extension();
+        $image->move($destinationPath, $name);
+       // $image->storePubliclyAs('public', $name);
         $data['image'] = $name;
         $data['status'] = 'unpublic';
 
+
+        //$image = $request->file('image')) 
+       // $destinationPath = storage_path('images/');//'image/';
+       // $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+       // $image->move($destinationPath, $profileImage);
+
+
+
         $advt = Advert::create($data);
 
-       // return new UserResource($user);
+       // return new UserResource($user);    storage_path(
        return new AdvertResource($advt);
 
       

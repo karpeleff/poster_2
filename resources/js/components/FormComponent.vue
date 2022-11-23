@@ -306,6 +306,7 @@
         watch: {
           board: function(){
             this.formData.board = this.board; 
+           // alert( this.formData.board);
             //alert(this.formData.board);
             this.getCat();
             this.getSubCat();
