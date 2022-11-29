@@ -5248,7 +5248,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     getSubCat: function getSubCat() {
       var _this = this;
-      axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/subcategory/' + this.board).then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/subcategory/' + this.board + '/' + this.formData.cat).then(function (response) {
         //console.log(response.data);
         _this.subcat = response.data;
       });
@@ -5262,8 +5262,8 @@ __webpack_require__.r(__webpack_exports__);
     },
     getSity: function getSity() {
       var _this3 = this;
-      axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/cities').then(function (response) {
-        //console.log(response.data);
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/cities/' + this.board).then(function (response) {
+        //  console.log(response.data);
         _this3.sity = response.data;
       });
     },
@@ -5311,7 +5311,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {
-    this.getSity();
+    // this.getSity();
     //this.getCookie();
 
     ;
@@ -5322,7 +5322,10 @@ __webpack_require__.r(__webpack_exports__);
       this.formData.board = this.board;
       // alert( this.formData.board);
       //alert(this.formData.board);
+      this.getSity();
       this.getCat();
+    },
+    cat: function cat() {
       this.getSubCat();
     }
   },
@@ -5719,7 +5722,10 @@ var render = function render() {
     }
   }, _vm._l(_vm.sity, function (item) {
     return _c("option", {
-      key: item.id
+      key: item.id,
+      domProps: {
+        value: item.code
+      }
     }, [_vm._v("\n                " + _vm._s(item.name) + "\n                ")]);
   }), 0)]), _vm._v(" "), _c("div", {
     staticClass: "form-group row"

@@ -56,10 +56,10 @@ class FormController extends Controller
  
 
 
-       public  function  getCity()
+       public  function  getCity($id)
     { 
 
-        $data = City::all();
+        $data = City::where('board_id',$id)->get();
 
         return response()->json($data);
     }
@@ -70,12 +70,14 @@ class FormController extends Controller
         return response()->json($data);
     }
 
-    public  function  getSubCategory($id)
+    public  function  getSubCategory($board_id,$cat_id)
     {
-         $data = SubCategory::where('board_id',$id)->get();
+         $data = SubCategory::where([
+            'board_id'=> $board_id,
+             'category_id' => $cat_id,
+                                    ])->get();
 
-         return response()->json($data)->cookie(
-        'userid', '1', 100 );
+         return response()->json($data);
 
     }
 

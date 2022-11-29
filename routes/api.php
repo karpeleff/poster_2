@@ -70,9 +70,9 @@ Route::get('/subcategories', function () {
  */
 
 
-Route::get('/subcategory/{id}',[FormController::class, 'getSubCategory']);
+Route::get('/subcategory/{board}/{cat}',[FormController::class, 'getSubCategory']);
 Route::get('/category/{id}',[FormController::class, 'getCategory']);
-Route::get('/cities',[FormController::class, 'getCity']);
+Route::get('/cities/{id}',[FormController::class, 'getCity']);
  
 
 //Route::post('/register', 'Api\v1\RegisterController@register');

@@ -476,6 +476,86 @@ return response();
     //return response()->json(['success'=>'You have successfully upload file.']);
 }
 
+public  function  dispatcher()
+{
+    //echo 'its me';
+ $this->getCookie();
+}
+
+public function getCookie($url= null)
+{
+    $response = Curl::to('http://www.isra.com/do/page7812sajlwq218/nothing')
+        ->withResponseHeaders()
+        ->returnResponseObject()
+        ->get();
+   
+     //$content = $response->content;
+     //dd($content);
+     $headers = $response->headers;
+     dd($headers);
+}
+
+public function posterIsracom()
+{
+   
+
+$row = Advert::latest()->first();
+
+//dd($row->sity);
+
+//$path = Storage::path('images/');
+
+//dd($path);
+//lemhirassion=33b5cc1416b8dd2fb4d71fcc11c431b3;
+
+
+
+$path = storage_path('images/');
+
+
+$response = Curl::to('http://www.isra.com/do/page7812sajlwq218/nothing')
+                    ->withData([
+                       
+                        'act'  => 'go',
+                        'name'    => 'Aleksey',
+                        'email' =>  'alekseykarpelev@gmail.com',
+                        'icq'   => '',
+                        'phone'    => '686858588484',
+                        'city'  => '42',
+                        'section'  =>  'cars',
+                        'header' => 'header',
+                        'leftt' => 'text text',
+                      
+                       
+                    ])
+                    ->withResponseHeaders([
+                        'Accept: application/x-www-form-urlencoded', 
+                        'Cookie: lemhirassion=33b5cc1416b8dd2fb4d71fcc11c431b3', 
+                        'Content-Type: multipart/form-data', 
+                        'Accept-Encoding: gzip, deflate, br', 
+                        'User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:106.0) Gecko/20100101 Firefox/106.0', 
+                        'Connection: keep-alive'
+                    ]) 
+                    ->returnResponseObject()
+
+                    ->withResponseHeaders()
+                  ->withFile( 'photo1', $path.'/'.$row->image, 'image/jpg', $row->image )
+                   
+                        
+                    ->post();
+
+
+
+                    return redirect()->route('add_advt')
+                    ->with('success','тестовое обьявление опубликовано');
+                  //  dd($response);
+                  
+                //  dd($response->headers);
+
+                   //$content = $response->content;
+
+                   //echo $content;
+}
 
 
 

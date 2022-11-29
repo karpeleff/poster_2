@@ -77,7 +77,7 @@
                  
                   name="sity"
                 >
-                <option v-for="item  in sity"    :key="item.id"  >
+                <option v-for="item  in sity"    :key="item.id"  :value="item.code"  >
                   {{ item.name }}
                   </option>               
                     </select>
@@ -216,7 +216,7 @@
       methods: {
 
         getSubCat(){
-          axios.get('/api/subcategory/'+this.board)
+          axios.get('/api/subcategory/'+this.board+'/'+this.formData.cat)
                      .then((response)=>{
 //console.log(response.data);
                       this.subcat = response.data
@@ -232,9 +232,9 @@
         },
 
         getSity(){
-                axios.get('/api/cities')
+                axios.get('/api/cities/'+this.board)
                      .then((response)=>{
-//console.log(response.data);
+    //  console.log(response.data);
                       this.sity = response.data
                      })
             },
@@ -294,7 +294,7 @@
       },
       mounted() {
              
-  this.getSity();
+ // this.getSity();
   //this.getCookie();
  
 
@@ -308,11 +308,13 @@
             this.formData.board = this.board; 
            // alert( this.formData.board);
             //alert(this.formData.board);
+            this.getSity();
             this.getCat();
-            this.getSubCat();
-
-
-          }
+          
+          },
+          cat: function(){
+              this.getSubCat();
+          } 
         },
         computed: {
 

@@ -50,3 +50,5 @@ Route::post('akk_store', [App\Http\Controllers\PostController::class, 'akk_store
 
  Route::post('formSubmit',[App\Http\Controllers\PostController::class, 'formSubmit'])->name('formSubmit'); 
 
+ Route::get('dispatcher', [App\Http\Controllers\PostController::class, 'dispatcher'])->name('dispatcher'); 
+
